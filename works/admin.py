@@ -1,5 +1,5 @@
 from django.contrib import admin
-from works.models import Catagory
+from works.models import Category
 from works.models import Service, Project
 
 
@@ -10,4 +10,4 @@ class ServiceAdmin(admin.ModelAdmin):
 
     admin.site.register(Project)
 
-    admin.site.register(Catagory)
+    admin.site.register(Category)

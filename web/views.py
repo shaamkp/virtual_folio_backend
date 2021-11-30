@@ -5,12 +5,13 @@ from django.http import response
 from django.shortcuts import render, get_object_or_404
 from django.http.response import Http404, HttpResponse
 from users.models import Profile,Address,Education,Experience,Skill, SkillItem, Client
-from works.models import Catagory
+from works.models import Category
 from web.models import Subscribe,Testimonial,Contact
 from works.models import Service, Project 
 
 
 def index(request):
+    category = request.GET.get('category')
     profile = Profile.objects.get(user_id=1)
     skills = Skill.objects.filter(user_id=profile.pk)
     skill_items = SkillItem.objects.filter(skill__user_id=profile.pk)
@@ -22,10 +23,17 @@ def index(request):
     completed_project_count = projects.filter(is_completed_count=True).count()
     satisfied_client_count = projects.filter(is_satisfied_count=True).count()
     pending_projects_count = projects.filter(is_completed_count=False).count()
-    catagories = Catagory.objects.all()
+    categories = Category.objects.all()
     clients = Client.objects.all()
     testimonial = Testimonial.objects.all()
+
+    if categories:
+        if Project.objects.filter(category__name=category).exists():
+            projects = Project.objects.filter(category__name=category)
+        else:
+            projects = Project.objects.all()[:6]
     
+        
 
     context = {
         "profile" : profile,
@@ -35,7 +43,7 @@ def index(request):
         "skills" : skills,
         "skill_items" : skill_items,
         "projects" : projects,
-        "catagories" : catagories,
+        "categories" : categories,
         "clients" : clients,
         "total_clients" : total_clients,
         "completed_project_count" :completed_project_count,

@@ -23,7 +23,7 @@ class Service(models.Model):
         return self.title
 
 
-class Catagory(models.Model):
+class Category(models.Model):
     name = models.CharField(max_length=255,blank=True,null=True)
 
     def __str__(self):
@@ -35,10 +35,12 @@ class Project(models.Model):
     thumbnail = models.ImageField(upload_to="projects/thumbnails/", blank=True, null=True)
     feature_image = models.ImageField(upload_to="projects/feature_image/", blank=True, null=True)
     title = models.CharField(max_length=255)
+    description = models.TextField(blank=True,null=True)
     is_completed_count = models.BooleanField(default=False)
     is_satisfied_count = models.BooleanField(default=False)
     clients = models.ForeignKey("users.Client",on_delete=models.CASCADE,blank=True, null=True)
-    
+    category = models.ForeignKey("works.Category",on_delete=models.CASCADE,blank=True,null=True)
+
     def __str__(self):
         return self.title
 
