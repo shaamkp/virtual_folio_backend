@@ -18,7 +18,7 @@ def index(request):
     experience = Experience.objects.all()
     service = Service.objects.all()
     projects = Project.objects.all()
-    total_clients = Client.objects.all()
+    total_clients = Client.objects.all().count()
     completed_project_count = projects.filter(is_completed_count=True).count()
     satisfied_client_count = projects.filter(is_satisfied_count=True).count()
     pending_projects_count = projects.filter(is_completed_count=False).count()
