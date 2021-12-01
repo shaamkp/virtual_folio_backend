@@ -180,9 +180,9 @@
                             <h1>See my work</h1>
                             <ul>
                                 {% for category in categories %}
-                                <li>
-                                    <div class="border done">
-                                        <a href="{% url 'web:index' %}?category={{category.name}}">{{category.name}}</a>
+                                <li class="ajax">
+                                    <div class="border">
+                                        <a href="{% url 'web:index' %}?category={{category.name}}" target="blank">{{category.name}}</a>
                                     </div>
                                 </li>
                                 {% endfor %}
