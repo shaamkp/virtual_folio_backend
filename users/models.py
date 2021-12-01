@@ -68,7 +68,7 @@ class Skill(models.Model):
         return self.name
 
 class SkillItem(models.Model):
-    skill = models.ForeignKey("users.Skill", on_delete=CASCADE)
+    skill = models.ForeignKey("users.Skill", on_delete=models.CASCADE)
     rating = models.IntegerField()
     name = models.CharField(max_length=255)
 

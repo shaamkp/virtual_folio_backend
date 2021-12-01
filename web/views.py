@@ -25,7 +25,7 @@ def index(request):
     pending_projects_count = projects.filter(is_completed_count=False).count()
     categories = Category.objects.all()
     clients = Client.objects.all()
-    testimonial = Testimonial.objects.all()
+    testimonials = Testimonial.objects.all()
 
     if categories:
         if Project.objects.filter(category__name=category).exists():
@@ -49,6 +49,7 @@ def index(request):
         "completed_project_count" :completed_project_count,
         "satisfied_client_count" :satisfied_client_count,
         "pending_projects_count" :pending_projects_count,
+        "testimonials" : testimonials
 
     }
     return render(request, "index.html",context = context)

@@ -86,25 +86,25 @@
                         </div>
                         <section class="container">
                             {% for skill in skills %}
-                            <div class="box">
-                                <div class="item">
-                                    <h5>{{skill.name}}</h5>
-                                    {% for skill_item in skill_items %}
-                                        {% if skill_item.skill == skill %}
-                                    <h4>
-                                        {{skill_item.name}}
-                                    </h4>
-                                    <div class="skillbar">
-                                        <div class="percentage" data-percentage="{{skill_item.rating}}">
-                                            <small>
-                                            {{skill_item.rating}}%
-                                            </small>
+                                <div class="box">
+                                    <div class="item">
+                                        <h5>{{skill.name}}</h5>
+                                        {% for skill_item in skill_items %}
+                                            {% if skill_item.skill == skill %}
+                                        <h4>
+                                            {{skill_item.name}}
+                                        </h4>
+                                        <div class="skillbar">
+                                            <div class="percentage" data-percentage="{{skill_item.rating}}">
+                                                <small>
+                                                {{skill_item.rating}}%
+                                                </small>
+                                            </div>
                                         </div>
+                                            {% endif %}
+                                        {% endfor %}
                                     </div>
-                                        {% endif %}
-                                    {% endfor %}
                                 </div>
-                            </div>
                             {% endfor %}
                         </section>
                 </section>
@@ -125,22 +125,6 @@
                                 </div>
                             </div>
                             {% endfor %}
-                            <!-- <div class="item">
-                                <h2>2009</h2>
-                                <div class="content">
-                                    <h4>Specialize of course</h4>
-                                    <small>University of study</small>
-                                    <p>There are many variation of lore ipsum available, but majority has suffered</p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <h2>2008</h2>
-                                <div class="content last">
-                                    <h4>Specialize of course</h4>
-                                    <small>University of study</small>
-                                    <p>There are many variation of lore ipsum available, but majority has suffered</p>
-                                </div>
-                            </div> -->
                         </div> 
                         <div class="right">
                             <h3>Experience</h3>
@@ -154,22 +138,6 @@
                                     </div>
                                 </div>
                             {% endfor %}
-                            <!-- <div class="item">
-                                <h2>2014</h2>
-                                <div class="content">
-                                    <h4>Specialize of course</h4>
-                                    <small>University of study</small>
-                                    <p>There are many variation of lore ipsum available, but majority has suffered</p>
-                                </div>
-                            </div>
-                            <div class="item line">
-                                <h2>2011</h2>
-                                <div class="content last">
-                                    <h4>Specialize of course</h4>
-                                    <small>University of study</small>
-                                    <p>There are many variation of lore ipsum available, but majority has suffered</p>
-                                </div>
-                            </div> -->
                         </div>
                     </section>
                 </section>
@@ -188,28 +156,6 @@
                             <h2>{{services.title}}</h2>
                             <p>{{services.description}}</p>
                         </li>
-                        <!-- <li>
-                            <div class="image-container">
-                                <img src="{% static 'images/search.png' %}" alt="Search">
-                            </div>
-                            
-                            <h2>SEO</h2>
-                            <p>There are many variations of passages of lorem ipsum available</p>
-                        </li>
-                        <li>
-                            <div class="image-container">
-                                <img src="{% static 'images/uiux-design.png' %}" alt="uiux-design" />
-                            </div>
-                            <h2>UI/UX Design</h2>
-                            <p>There are many variations of passages of lorem ipsum available</p>
-                        </li>
-                        <li>
-                            <div class="image-container">
-                                <img src="{% static 'images/developer.png' %}" alt="Developer" />
-                            </div>
-                            <h2>Web Development</h2>
-                            <p>There are many variations of passages of lorem ipsum available</p>
-                        </li> -->
                         {% endfor %}
                     </ul>
                 </section>
@@ -235,7 +181,7 @@
                             <ul>
                                 {% for category in categories %}
                                 <li>
-                                    <div class="border">
+                                    <div class="border done">
                                         <a href="{% url 'web:index' %}?category={{category.name}}">{{category.name}}</a>
                                     </div>
                                 </li>
@@ -265,23 +211,26 @@
                 <section class="wrapper">
                     <section class="container">
                         <h1>What Clients are Saying</h1>
+                        {% for testimonial in testimonials %}
                         <div class="items">
                             <div class="left">
-                                <div class="box">
+                                <div class="box" style="background: url({{testimonial.clients.image.url}}) no-repeat;">
                                 </div>
                             </div>
                             <div class="right">
-                                <p>Ther are many variations of passages available on lorum ipsum.But the majority have suffered</p>
+                                <p>{{testimonial.message}}</p>
                                 <div class="set">
                                     <div class="icon">
+                                        <img src="{{testimonial.clients.image.url}}" alt="">
                                     </div>
                                     <div class="name">
-                                        <h3>Satria Nugraha</h3>
-                                        <small>CEO Nutshell</small>
+                                        <h3>{{testimonial.clients.name}}</h3>
+                                        <small>{{testimonial.clients.designation}}</small>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        {% endfor %}
                     </section>
                 </section>
             </section>
@@ -430,6 +379,7 @@
             <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
             <script src="{% static 'js/sweetalert2.min.js'%}"></script>
             <script src="{% static 'js/script.js' %}"></script>
+            <script src="{% static 'js/ajax.js' %}"></script>
             <script>
                 $(document).ready(function(){
                     $(".percentage").each(function(){

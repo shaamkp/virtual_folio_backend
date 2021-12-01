@@ -843,8 +843,12 @@ background: white;
 }
 #portfolio section.wrapper section.container div.top ul li:hover div.border h4 {
 	background: #2a60f6;
-	color: white;
+	color: white;	
 }
+#portfolio section.wrapper section.container div.top ul li div.border a{
+	padding: 10px;
+    font-size: 15px;
+}	
 #portfolio section.wrapper section.container div.bottom{
  	text-align: center;
 }
@@ -937,7 +941,6 @@ width: 28%;
 #testimonial section.wrapper section.container div.items div.left div.box {
 	height: 319px;
 	width: 365px;
-	background: url(../images/testimonials/testimonials_1.jpg) no-repeat;
 	background-size: cover;
 	margin-right: 20px;
 	border-radius: 8px;
@@ -962,14 +965,16 @@ width: 28%;
 	align-items: center;
 }
 #testimonial section.wrapper section.container div.items div.right div.set div.icon{
-	background: url(../images/testimonials/testimonials_1.jpg) no-repeat;
 	width: 76px;
 	height: 76px;
 	background-size: cover;
 	border-radius: 50%;
 	margin-right: 20px;
+	overflow: hidden;
 }
 #testimonial section.wrapper section.container div.items div.right div.set div.icon img{
+	display: block;
+	width: 100%;
 
 }
 #testimonial section.wrapper section.container div.items div.right div.set div.name{
