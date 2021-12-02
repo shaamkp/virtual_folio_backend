@@ -12,7 +12,6 @@ from works.models import Service, Project
 
 
 def index(request):
-    category = request.GET.get('category')
     profile = Profile.objects.get(user_id=1)
     skills = Skill.objects.filter(user_id=profile.pk)
     skill_items = SkillItem.objects.filter(skill__user_id=profile.pk)
@@ -27,15 +26,7 @@ def index(request):
     categories = Category.objects.all()
     clients = Client.objects.all()
     testimonials = Testimonial.objects.all()
-
-    if categories:
-        if Project.objects.filter(category__name=category).exists():
-            projects = Project.objects.filter(category__name=category)
-        else:
-            projects = Project.objects.all()[:6]
-    
-        
-
+            
     context = {
         "profile" : profile,
         "education" : education,
@@ -51,26 +42,42 @@ def index(request):
         "satisfied_client_count" :satisfied_client_count,
         "pending_projects_count" :pending_projects_count,
         "testimonials" : testimonials,
+        "MEDIA_URL" : settings.MEDIA_URL,
     }
+
     return render(request, "index.html",context = context)
 
 
 def category(request):
     category_name =request.GET.get('category')
+    if category_name:
 
-    if Category.objects.filter(name=category_name).exists():
-        if Project.objects.filter(category__name=category_name).exists():
-            projects = Project.objects.filter(category__name=category_name).values()
+        if category_name == "All":
+
+            projects = Project.objects.all().values()
             data = list(projects)  
-
             response_data = {
                 "title" : "success",
                 "data" : data,
             }
+        elif Category.objects.filter(name=category_name).exists():
+            if Project.objects.filter(category__name=category_name).exists():
+                projects = Project.objects.filter(category__name=category_name).values()
+                data = list(projects)  
+
+                response_data = {
+                    "title" : "success",
+                    "data" : data,
+                }
+            else:
+                response_data = {
+                    "title" : "failed",
+                    "message" : "projects not found",
+                }
         else:
             response_data = {
                 "title" : "failed",
-                "message" : "projects not found",
+                "message" : "Category not found",
             }
     else:
         response_data = {

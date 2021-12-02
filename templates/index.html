@@ -17,181 +17,186 @@
             href="{% staticimages/favicon.ico"
             />
     </head>
-        <body>
-            <section id="spotlight">
-                <section class="container">
-                    <header>
-                        <div class="left">
-                            <h1>
-                                <a href="#" class="logo">V-Folio</a>
-                            </h1>
-                        </div>
-                        <div class="middle">
-                            <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Portfolio</a></li>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Conatct</a></li>
-                            </ul>
-                        </div>
-                        <div class="right">
-                            <a href="" class="button">En</a>
-                        </div>
-                    </header>
-                        <section class="wrapper">
-                            <small>Welcome</small>
-                            <h1>I'm {{profile.name}}</h1>
-                            <a href="#" class="text">{{profile.designation}}</a>
-                        </section>
-                </section>
-            </section>
-            <section id="profile">
-                <section class="wrapper">
-                    <div class="container">
-                        <div class="left">
-                            <div class="img-container">
-                                <img src="{{profile.image.url}}" alt="" />
-                                <div class="box"></div>
-                            </div>
-                        </div>
-                    
-                        <div class="right">
-                            <h1>{{profile.name}} </h1>
-                            <h6>{{profile.designation}}</h6>
-                            <p>
-                                {{profile.description}}
-                            </p>
-                            <ul>
-                                
-                                <li><h4><b>From : </b>{{profile.address.district}},{{profile.address.state}}</h4></li>
-                                <li><h4><b>Lives in : </b>{{profile.address.area}},{{profile.address.state}}</h4></li>
-                                <li><h4><b>Age : </b>{{profile.age}}</h4></li>
-                                <li><h4><b>Gender : </b>{{profile.gender}}</h4></li>
-                                
-                            </ul>
-                            <a href="{{profile.resume.url}}" download="{{profile.resume.url}}" class="button">
-                                Download CV
-                            </a>
-                        </div>
+    <body>
+        <section id="spotlight">
+            <section class="container">
+                <header>
+                    <div class="left">
+                        <h1>
+                            <a href="#" class="logo">V-Folio</a>
+                        </h1>
                     </div>
-                </section>
-            </section>
-            <section id="myskills">
-                <section class="wrapper">
-                        <div class="top">
-                            <h1>
-                                My Skills
-                            </h1>
-                        </div>
-                        <section class="container">
-                            {% for skill in skills %}
-                                <div class="box">
-                                    <div class="item">
-                                        <h5>{{skill.name}}</h5>
-                                        {% for skill_item in skill_items %}
-                                            {% if skill_item.skill == skill %}
-                                        <h4>
-                                            {{skill_item.name}}
-                                        </h4>
-                                        <div class="skillbar">
-                                            <div class="percentage" data-percentage="{{skill_item.rating}}">
-                                                <small>
-                                                {{skill_item.rating}}%
-                                                </small>
-                                            </div>
-                                        </div>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        </section>
-                </section>
-            </section>
-            <section id="education">
-                
-                <section class="wrapper">
-                    <section class="items">
-                        <div class="left">
-                            <h3>Education</h3>
-                            {% for educations in education %}
-                            <div class="item">
-                                <span class="current"><h2>{{educations.year}}</h2></span>
-                                <div class="content">
-                                    <h4>{{educations.course}}</h4>
-                                    <small>{{educations.university}}</small>
-                                    <p>{{educations.description}}</p>
-                                </div>
-                            </div>
-                            {% endfor %}
-                        </div> 
-                        <div class="right">
-                            <h3>Experience</h3>
-                            {% for experiences in experience %}
-                                <div class="item">
-                                    <span class="current"><h2>{{experiences.year}}</h2></span>
-                                    <div class="content">
-                                        <h4>{{experiences.course}}</h4>
-                                        <small>{{experiences.university}}</small>
-                                        <p>{{experiences.description}}</p>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        </div>
-                    </section>
-                </section>
-            
-            </section>
-            <section id="service">
-                <section class="wrapper">
-                    <h4>service</h4>
-                    <h1>What can i do?</h1>
-                    <ul>
-                        {% for services in service %} 
-                        <li>
-                            <div class="image-container">
-                                <img src="{{services.image.url}}" alt="paint-bucket" />
-                            </div>
-                            <h2>{{services.title}}</h2>
-                            <p>{{services.description}}</p>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </section>
-            </section>
-            <section id="usercount">
-                <section class="wrapper">
-                    <div class="container">
+                    <div class="middle">
                         <ul>
-                            <li><h3>{{total_clients}}</h3><h5>clients</h5></li>
-                            <li><h3>{{completed_project_count}}</h3><h5>Project complete</h5></li>
-                            <li><h3>{{pending_projects_count}}</h3><h5>Project Ongoing</h5></li>
-                            <li><h3>{{satisfied_client_count}}</h3><h5>Client Satisfaction</h5></li>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Conatct</a></li>
                         </ul>
                     </div>
+                    <div class="right">
+                        <a href="" class="button">En</a>
+                    </div>
+                </header>
+                    <section class="wrapper">
+                        <small>Welcome</small>
+                        <h1>I'm {{profile.name}}</h1>
+                        <a href="#" class="text">{{profile.designation}}</a>
+                    </section>
+            </section>
+        </section>
+        <section id="profile">
+            <section class="wrapper">
+                <div class="container">
+                    <div class="left">
+                        <div class="img-container">
+                            <img src="{{profile.image.url}}" alt="" />
+                            <div class="box"></div>
+                        </div>
+                    </div>
+                
+                    <div class="right">
+                        <h1>{{profile.name}} </h1>
+                        <h6>{{profile.designation}}</h6>
+                        <p>
+                            {{profile.description}}
+                        </p>
+                        <ul>
+                            
+                            <li><h4><b>From : </b>{{profile.address.district}},{{profile.address.state}}</h4></li>
+                            <li><h4><b>Lives in : </b>{{profile.address.area}},{{profile.address.state}}</h4></li>
+                            <li><h4><b>Age : </b>{{profile.age}}</h4></li>
+                            <li><h4><b>Gender : </b>{{profile.gender}}</h4></li>
+                            
+                        </ul>
+                        <a href="{{profile.resume.url}}" download="{{profile.resume.url}}" class="button">
+                            Download CV
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </section>
+        <section id="myskills">
+            <section class="wrapper">
+                    <div class="top">
+                        <h1>
+                            My Skills
+                        </h1>
+                    </div>
+                    <section class="container">
+                        {% for skill in skills %}
+                            <div class="box">
+                                <div class="item">
+                                    <h5>{{skill.name}}</h5>
+                                    {% for skill_item in skill_items %}
+                                        {% if skill_item.skill == skill %}
+                                    <h4>
+                                        {{skill_item.name}}
+                                    </h4>
+                                    <div class="skillbar">
+                                        <div class="percentage" data-percentage="{{skill_item.rating}}">
+                                            <small>
+                                            {{skill_item.rating}}%
+                                            </small>
+                                        </div>
+                                    </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </section>
+            </section>
+        </section>
+        <section id="education">
+            
+            <section class="wrapper">
+                <section class="items">
+                    <div class="left">
+                        <h3>Education</h3>
+                        {% for educations in education %}
+                        <div class="item">
+                            <span class="current"><h2>{{educations.year}}</h2></span>
+                            <div class="content">
+                                <h4>{{educations.course}}</h4>
+                                <small>{{educations.university}}</small>
+                                <p>{{educations.description}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div> 
+                    <div class="right">
+                        <h3>Experience</h3>
+                        {% for experiences in experience %}
+                            <div class="item">
+                                <span class="current"><h2>{{experiences.year}}</h2></span>
+                                <div class="content">
+                                    <h4>{{experiences.course}}</h4>
+                                    <small>{{experiences.university}}</small>
+                                    <p>{{experiences.description}}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </section>
             </section>
-            <section id="portfolio">
-                <section class="wrapper">
-                    <section class="container">
-                        <div class="top">
-                            <h2>Portfolio</h2>
-                            <h1>See my work</h1>
-                            <ul>
-                                {% for category in categories %}
-                                <li>
-                                    <div class="border">
-                                        <a href="{% url 'web:category' %}?category={{category.name}}" target="blank" class="active">{{category.name}}</a>
-                                    </div>
-                                </li>
-                                {% endfor %}
-                            </ul>
+        
+        </section>
+        <section id="service">
+            <section class="wrapper">
+                <h4>service</h4>
+                <h1>What can i do?</h1>
+                <ul>
+                    {% for services in service %} 
+                    <li>
+                        <div class="image-container">
+                            <img src="{{services.image.url}}" alt="paint-bucket" />
                         </div>
-                        <div class="bottom active">
-                            <ul class="project_ul">
-                                
-                                <!-- <li>
+                        <h2>{{services.title}}</h2>
+                        <p>{{services.description}}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </section>
+        </section>
+        <section id="usercount">
+            <section class="wrapper">
+                <div class="container">
+                    <ul>
+                        <li><h3>{{total_clients}}</h3><h5>clients</h5></li>
+                        <li><h3>{{completed_project_count}}</h3><h5>Project complete</h5></li>
+                        <li><h3>{{pending_projects_count}}</h3><h5>Project Ongoing</h5></li>
+                        <li><h3>{{satisfied_client_count}}</h3><h5>Client Satisfaction</h5></li>
+                    </ul>
+                </div>
+            </section>
+        </section>
+        <section id="portfolio">
+            <section class="wrapper">
+                <section class="container">
+                    <div class="top">
+                        <h2>Portfolio</h2>
+                        <h1>See my work</h1>
+                        <ul>
+                            <li>
+                                <div class="border">
+                                    <a href="{% url 'web:category' %}?category=All" target="blank" class="active">All</a>
+                                </div>
+                            </li>
+                            {% for category_name in categories %}
+                            <li>
+                                <div class="border">
+                                    <a href="{% url 'web:category' %}?category={{category_name.name}}" target="blank" class="active">{{category_name.name}}</a>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="bottom active">
+                        <ul class="project_ul">
+                            {% for project in projects %}
+                                <li>
                                     <div class="box">
                                         <img src="{{project.thumbnail.url}}" alt="work">
                                         <div class="text">
@@ -199,220 +204,214 @@
                                             <h5>{{project.description}}</h5>
                                         </div>
                                     </div>
-                                </li> -->
-                                
-                            </ul>
-                            <a href="" class="button">Load More</a>
-                        </div>
-                    </section>
-                </section>
-            </section>
-            <section id="testimonial">
-                <section class="wrapper">
-                    <section class="container">
-                        <h1>What Clients are Saying</h1>
-                        {% for testimonial in testimonials %}
-                        <div class="items">
-                            <div class="left">
-                                <div class="box" style="background: url({{testimonial.clients.image.url}}) no-repeat;">
-                                </div>
-                            </div>
-                            <div class="right">
-                                <p>{{testimonial.message}}</p>
-                                <div class="set">
-                                    <div class="icon">
-                                        <img src="{{testimonial.clients.image.url}}" alt="">
-                                    </div>
-                                    <div class="name">
-                                        <h3>{{testimonial.clients.name}}</h3>
-                                        <small>{{testimonial.clients.designation}}</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </section>
-                </section>
-            </section>
-            <section id="company">
-                <section class="wrapper">
-                    <section class="container">
-                        <ul>
-                            <li>
-                                <div class="box">
-                                    <a href="#"><img src="{% static 'images/logo/company_1.svg' %}" alt="company"></a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="box">
-                                    <a href="#"><img src="{% static 'images/logo/company_2.svg' %}" alt="company"></a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="box">
-                                    <a href="#"><img src="{% static 'images/logo/company_3.svg' %}" alt="company"></a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="box">
-                                    <a href="#"><img src="{% static 'images/logo/company_4.svg' %}" alt="company"></a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="box">
-                                    <a href="#"><img src="{% static 'images/logo/company_5.svg' %}" alt="company"></a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="box">
-                                    <a href="#"><img src="{% static 'images/logo/company_6.svg' %}" alt="company"></a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="box">
-                                    <a href="#"><img src="{% static 'images/logo/company_7.svg' %}" alt="company"></a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="box">
-                                    <a href="#"><img src="{% static 'images/logo/company_8.svg' %}" alt="company"></a>
-                                </div>
-                            </li>
-                        
+                                </li>
+                            {% endfor %}
                         </ul>
-                    </section>
-                </section>
-            </section>
-            <section id="blog">
-                <section class="wrapper">
-                    <h6>Blog</h6>
-                    <h1>Latest Post</h1>
-                    <div class="items">
-                        <div class="item">
-                            <img src="{% static 'images/work/work-9.jpg' %}" alt="work" />
-                            <div class="box">
-                                <h5>Technology</h5>
-                                <h2>Invision design forward fund</h2>
-                                <small>May 22, 2018</small>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img src="{% static 'images/work/work-6.jpg' %}" alt="work">
-                            <div class="box">
-                                <h5>Business</h5>
-                                <h2>Annoying a plan for small teams</h2>
-                                <small>May 22, 2018</small>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img src="{% static 'images/work/work-1.jpg' %}" alt="Work" />
-                            <div class="box">
-                                <h5>Design<h5>
-                                <h2>5 Basic steps for illustrating</h2>
-                                <small>May 22, 2018</small>
-                            </div>
-                        </div>
+                        <a href="" class="button">Load More</a>
                     </div>
-                    <a href="" class="button">
-                        See All Post
-                    </a>
                 </section>
             </section>
-            <section id="contact">
+        </section>
+        <section id="testimonial">
+            <section class="wrapper">
                 <section class="container">
-                    <h6>contact</h6>
-                    <h1>Get in touch</h1>
+                    <h1>What Clients are Saying</h1>
+                    {% for testimonial in testimonials %}
                     <div class="items">
                         <div class="left">
-                            <div class="container">
-                                <img src="{% static 'images/map1.PNG' %}" alt="Map" />
+                            <div class="box" style="background: url({{testimonial.clients.image.url}}) no-repeat;">
                             </div>
                         </div>
                         <div class="right">
-                            <form action="{% url 'web:contact' %}" method="post" class="ajax">
-                                {% csrf_token %}
-                                <input type="text" placeholder="Your Name" class="name" name="name">
-                                <input type="email" placeholder="Email Address" name="email">
-                                <input type="text" placeholder="Subject" class="subject" name="subject">
-                                <textarea name="Enter message here" id="message" cols="30" rows="10" placeholder="Enter message here" name="message"></textarea>
-                                <input type="submit" value="Send Message">
-                            </form>
+                            <p>{{testimonial.message}}</p>
+                            <div class="set">
+                                <div class="icon">
+                                    <img src="{{testimonial.clients.image.url}}" alt="">
+                                </div>
+                                <div class="name">
+                                    <h3>{{testimonial.clients.name}}</h3>
+                                    <small>{{testimonial.clients.designation}}</small>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    {% endfor %}
                 </section>
             </section>
-            <footer>
-                <section class="wrapper">
-                    <h1>Virtual folio</h1>
-                    <div class="middle">
-                        <ul>
-                            <li>
-                                <h2 class="first">Where to find me</h2>
-                                <address>1600 Amphitheatre Parkway Mountain view, California 9403 US</address>
-                            </li>
-                            <li>
-                                <h2>Follow me</h2>
-                                <h4>Instagram</h4>
-                                <h4>Facebook</h4>
-                                <h4>Twitter</h4>
-                                <h4>Youtube</h4>
-                            </li>
-                            <li>
-                                <h2>Contact me</h2> 
-                                <h4>+8890234</h4>
-                                <h4>info@virtual.com</h4>
-                                <h4>+8890234</h4>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="bottom">
-                        <h3>Subscribe</h3>
-                        <form action="{% url 'web:subscribe' %}" method="post" class="ajax">
-                            {% csrf_token %}
-                            <input type="email" placeholder="Email address" name="email">
-                            <input type="submit" value="Subscribe" name="submit">
-                        </form>
-                        <small>Copyright &copy;2020.All right reserved | This template is made by <span> &#9825; </span> <a href="#">MAcode ID</a></small>
-                    </div>
+        </section>
+        <section id="company">
+            <section class="wrapper">
+                <section class="container">
+                    <ul>
+                        <li>
+                            <div class="box">
+                                <a href="#"><img src="{% static 'images/logo/company_1.svg' %}" alt="company"></a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="box">
+                                <a href="#"><img src="{% static 'images/logo/company_2.svg' %}" alt="company"></a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="box">
+                                <a href="#"><img src="{% static 'images/logo/company_3.svg' %}" alt="company"></a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="box">
+                                <a href="#"><img src="{% static 'images/logo/company_4.svg' %}" alt="company"></a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="box">
+                                <a href="#"><img src="{% static 'images/logo/company_5.svg' %}" alt="company"></a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="box">
+                                <a href="#"><img src="{% static 'images/logo/company_6.svg' %}" alt="company"></a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="box">
+                                <a href="#"><img src="{% static 'images/logo/company_7.svg' %}" alt="company"></a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="box">
+                                <a href="#"><img src="{% static 'images/logo/company_8.svg' %}" alt="company"></a>
+                            </div>
+                        </li>
+                    
+                    </ul>
                 </section>
-            </footer>
-            <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
-            <script src="{% static 'js/sweetalert2.min.js'%}"></script>
-            <script src="{% static 'js/script.js' %}"></script>
-            <script src="{% static 'js/ajax.js' %}"></script>
-            <script>
-                $(document).ready(function(){
-                    $(".percentage").each(function(){
-                        const $this = $(this);
-                        $this.data("percentage");
-                        let rating = $this.data("percentage");
-                        console.log(rating)
-                        $this.css("width", `${rating}%`)
-                    })
+            </section>
+        </section>
+        <section id="blog">
+            <section class="wrapper">
+                <h6>Blog</h6>
+                <h1>Latest Post</h1>
+                <div class="items">
+                    <div class="item">
+                        <img src="{% static 'images/work/work-9.jpg' %}" alt="work" />
+                        <div class="box">
+                            <h5>Technology</h5>
+                            <h2>Invision design forward fund</h2>
+                            <small>May 22, 2018</small>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="{% static 'images/work/work-6.jpg' %}" alt="work">
+                        <div class="box">
+                            <h5>Business</h5>
+                            <h2>Annoying a plan for small teams</h2>
+                            <small>May 22, 2018</small>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="{% static 'images/work/work-1.jpg' %}" alt="Work" />
+                        <div class="box">
+                            <h5>Design<h5>
+                            <h2>5 Basic steps for illustrating</h2>
+                            <small>May 22, 2018</small>
+                        </div>
+                    </div>
+                </div>
+                <a href="" class="button">
+                    See All Post
+                </a>
+            </section>
+        </section>
+        <section id="contact">
+            <section class="container">
+                <h6>contact</h6>
+                <h1>Get in touch</h1>
+                <div class="items">
+                    <div class="left">
+                        <div class="container">
+                            <img src="{% static 'images/map1.PNG' %}" alt="Map" />
+                        </div>
+                    </div>
+                    <div class="right">
+                        <form action="{% url 'web:contact' %}" method="post" class="ajax">
+                            {% csrf_token %}
+                            <input type="text" placeholder="Your Name" class="name" name="name">
+                            <input type="email" placeholder="Email Address" name="email">
+                            <input type="text" placeholder="Subject" class="subject" name="subject">
+                            <textarea name="Enter message here" id="message" cols="30" rows="10" placeholder="Enter message here" name="message"></textarea>
+                            <input type="submit" value="Send Message">
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </section>
+        <footer>
+            <section class="wrapper">
+                <h1>Virtual folio</h1>
+                <div class="middle">
+                    <ul>
+                        <li>
+                            <h2 class="first">Where to find me</h2>
+                            <address>1600 Amphitheatre Parkway Mountain view, California 9403 US</address>
+                        </li>
+                        <li>
+                            <h2>Follow me</h2>
+                            <h4>Instagram</h4>
+                            <h4>Facebook</h4>
+                            <h4>Twitter</h4>
+                            <h4>Youtube</h4>
+                        </li>
+                        <li>
+                            <h2>Contact me</h2> 
+                            <h4>+8890234</h4>
+                            <h4>info@virtual.com</h4>
+                            <h4>+8890234</h4>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bottom">
+                    <h3>Subscribe</h3>
+                    <form action="{% url 'web:subscribe' %}" method="post" class="ajax">
+                        {% csrf_token %}
+                        <input type="email" placeholder="Email address" name="email">
+                        <input type="submit" value="Subscribe" name="submit">
+                    </form>
+                    <small>Copyright &copy;2020.All right reserved | This template is made by <span> &#9825; </span> <a href="#">MAcode ID</a></small>
+                </div>
+            </section>
+        </footer>
+        <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+        <script src="{% static 'js/sweetalert2.min.js'%}"></script>
+        <script src="{% static 'js/script.js' %}"></script>
+        <script src="{% static 'js/ajax.js' %}"></script>
+        <script>
+            var MEDIA_URL = "{{MEDIA_URL}}"
+            $(document).ready(function(){
+                $(".percentage").each(function(){
+                    const $this = $(this);
+                    $this.data("percentage");
+                    let rating = $this.data("percentage");
+                    $this.css("width", `${rating}%`)
                 })
+            })
             $('#portfolio .top a').on('click', function(e){
                 e.preventDefault();
                 var $this = $(this);
                 var url = $this.attr("href")
-                console.log(url);
-
+                
                 $.ajax({
                     type:"GET",
                     url:url,
                     data: $(this).serialize(),
                     dataType:"json",
                     success: function(data) {
-                        // console.log(data);
-                        
                         var r_data = data.response_data.data
-                        console.log(r_data);
-
                         let html_data = ""
-
                         r_data.forEach((project_data) => {
                             html_data += `<li>
                                     <div class="box">
-                                        <img src="media/${project_data.thumbnail}" alt="work" />
+                                        <img src="${MEDIA_URL}/${project_data.thumbnail}" alt="work" />
                                         <div class="text">
                                             <h2>${project_data.title}</h2>
                                             <h5>${project_data.description}</h5>
@@ -421,7 +420,6 @@
                                 </li>`
                         })
                         $(".project_ul").html(html_data)
-
                     },
                     failure: function(data) { 
                         alert('Got an error dude');
@@ -431,6 +429,6 @@
                     cache:false,
                 })
             });  
-            </script>
-        </body>
+        </script>
+    </body>
 </html>
