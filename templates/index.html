@@ -180,18 +180,18 @@
                             <h1>See my work</h1>
                             <ul>
                                 {% for category in categories %}
-                                <li class="ajax">
+                                <li>
                                     <div class="border">
-                                        <a href="{% url 'web:index' %}?category={{category.name}}" target="blank">{{category.name}}</a>
+                                        <a href="{% url 'web:category' %}?category={{category.name}}" target="blank" class="active">{{category.name}}</a>
                                     </div>
                                 </li>
                                 {% endfor %}
                             </ul>
                         </div>
-                        <div class="bottom">
-                            <ul>
-                                {% for project in projects %}
-                                <li>
+                        <div class="bottom active">
+                            <ul class="project_ul">
+                                
+                                <!-- <li>
                                     <div class="box">
                                         <img src="{{project.thumbnail.url}}" alt="work">
                                         <div class="text">
@@ -199,8 +199,8 @@
                                             <h5>{{project.description}}</h5>
                                         </div>
                                     </div>
-                                </li>
-                                {% endfor %}
+                                </li> -->
+                                
                             </ul>
                             <a href="" class="button">Load More</a>
                         </div>
@@ -390,6 +390,47 @@
                         $this.css("width", `${rating}%`)
                     })
                 })
+            $('#portfolio .top a').on('click', function(e){
+                e.preventDefault();
+                var $this = $(this);
+                var url = $this.attr("href")
+                console.log(url);
+
+                $.ajax({
+                    type:"GET",
+                    url:url,
+                    data: $(this).serialize(),
+                    dataType:"json",
+                    success: function(data) {
+                        // console.log(data);
+                        
+                        var r_data = data.response_data.data
+                        console.log(r_data);
+
+                        let html_data = ""
+
+                        r_data.forEach((project_data) => {
+                            html_data += `<li>
+                                    <div class="box">
+                                        <img src="media/${project_data.thumbnail}" alt="work" />
+                                        <div class="text">
+                                            <h2>${project_data.title}</h2>
+                                            <h5>${project_data.description}</h5>
+                                        </div>
+                                    </div>
+                                </li>`
+                        })
+                        $(".project_ul").html(html_data)
+
+                    },
+                    failure: function(data) { 
+                        alert('Got an error dude');
+                    },
+                    processData:false,
+                    contentType:false,
+                    cache:false,
+                })
+            });  
             </script>
         </body>
 </html>

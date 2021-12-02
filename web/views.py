@@ -1,10 +1,11 @@
 import json
 import os
+from django import forms
 from django.conf import settings
-from django.http import response
-from django.shortcuts import render, get_object_or_404
+from django.http import response, JsonResponse
+from django.shortcuts import render
 from django.http.response import Http404, HttpResponse
-from users.models import Profile,Address,Education,Experience,Skill, SkillItem, Client
+from users.models import Profile,Education,Experience,Skill, SkillItem, Client
 from works.models import Category
 from web.models import Subscribe,Testimonial,Contact
 from works.models import Service, Project 
@@ -49,10 +50,35 @@ def index(request):
         "completed_project_count" :completed_project_count,
         "satisfied_client_count" :satisfied_client_count,
         "pending_projects_count" :pending_projects_count,
-        "testimonials" : testimonials
-
+        "testimonials" : testimonials,
     }
     return render(request, "index.html",context = context)
+
+
+def category(request):
+    category_name =request.GET.get('category')
+
+    if Category.objects.filter(name=category_name).exists():
+        if Project.objects.filter(category__name=category_name).exists():
+            projects = Project.objects.filter(category__name=category_name).values()
+            data = list(projects)  
+
+            response_data = {
+                "title" : "success",
+                "data" : data,
+            }
+        else:
+            response_data = {
+                "title" : "failed",
+                "message" : "projects not found",
+            }
+    else:
+        response_data = {
+            "title" : "failed",
+            "message" : "Category not found",
+        }
+
+    return JsonResponse({'response_data': response_data})
 
 
 def subscribe(request):
